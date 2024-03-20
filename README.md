@@ -2,6 +2,7 @@
 MeMS is a custom memory management system implemented in the C programming language. It utilizes system calls mmap and munmap for memory allocation and deallocation, respectively. MeMS aims to provide efficient memory management while adhering to specific constraints and requirements outlined below.
 
 **Constraints and Requirements**
+
 MeMS solely utilizes the system calls mmap and munmap for memory management. The use of other memory management library functions such as malloc, calloc, free, and realloc is strictly prohibited.
 Memory allocation requests are made in multiples of the system's PAGE_SIZE, determined using the command getconf PAGE_SIZE.
 Memory deallocation occurs only through munmap, and deallocation sizes are in multiples of PAGE_SIZE.
