@@ -9,18 +9,28 @@ Memory deallocation occurs only through munmap, and deallocation sizes are in mu
 The PAGE_SIZE macro is used to ensure compatibility across systems.
 User programs must use MeMS functions for memory allocation and deallocation, with the use of other memory management library functions disallowed.
 MeMS maintains a free list data structure to track allocated and unallocated memory, consisting of processes and holes.
-Free List Structure
+
+**Free List Structure**
+
 The free list is represented as a doubly linked list, comprising main chains and sub-chains. Main chains correspond to memory regions allocated by MeMS, while sub-chains represent segments within these regions.
+![image](https://github.com/Aditya-0109/Custom-Memory-Management-System/assets/103590981/0b338ac1-8561-4936-9b5c-4975d9afb547)
+
 
 **Main Chain Features:**
 
 New nodes are added to the main chain when memory is allocated using mmap.
 Each main chain node points to a sub-chain, which contains segments of allocated and unallocated memory.
-Sub-Chain Features:
+
+**Sub-Chain Features:**
 
 Segments represent portions of memory, categorized as either processes (mapped to user programs) or holes (unallocated).
 Holes can be reallocated, with any remaining space creating new hole segments in the sub-chain.
-MeMS Virtual Address and MeMS Physical Address
+
+![image](https://github.com/Aditya-0109/Custom-Memory-Management-System/assets/103590981/e473b2a3-9520-4975-b651-7046040a51a1)
+
+
+**MeMS Virtual Address and MeMS Physical Address**
+
 MeMS virtual addresses are utilized for memory allocation within the MeMS virtual address space. These addresses are mapped to MeMS physical addresses, which are provided by mmap.
 
 MeMS maintains a mapping from virtual address space to physical address space, allowing user processes to interact with heap memory via MeMS virtual addresses.
